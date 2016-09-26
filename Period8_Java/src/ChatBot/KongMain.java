@@ -1,15 +1,19 @@
-package introduction;
+package ChatBot;
 
 import java.util.Scanner;
 
-public class StringPractice {
-
+public class KongMain {
+	
+	static String response;
+	static boolean inMainLoop;
 	static Scanner input;
 	static String user;
+	static ChatBots school;
 	
 	public static void main(String[] args) {
 		//demonstrateStringMethod();
 		createFields();
+		
 		promptName();
 		promptForever();
 	}
@@ -22,24 +26,66 @@ public class StringPractice {
 				+"You may call me Computer. We should become friends.");
 	}
 	
-	public static void promptInput() {
+	public static String promptInput() {
 		
-		print("Please type something, "+user);
 		String userInput = input.nextLine();
-		print("Congratulations! you typed: "+userInput);
+		return userInput;
 	}
 	
 	public static void promptForever() {
-		while(true){
-			promptInput();
+		inMainLoop = true;
+		while(inMainLoop){
+			print("Hi, "+user+". How are you?");
+			response=promptInput();
+			if(findKeyword(response, "good", 0)>=0){
+				print("That's wonderful! So glad you feel good.");
+			}else if(response.indexOf("school")>=0){
+				print("School is great.");
+				inMainLoop=false;
+				school.talk();
+			}else{
+				print("I don't understand.");
+			}
+			
 		}
+	}
+
+	public static int findKeyword(String searchString, String keyword, int startPsn) {
+		
+			searchString = searchString.trim();
+			searchString = searchString.toLowerCase();
+			keyword = keyword.toLowerCase();
+			int psn = searchString.indexOf(0);
+			
+			while(psn>=0){
+				String before = " ";
+				String after = " ";
+				//check if character in front exists
+				if(psn > 0){
+					before = searchString.substring(psn-1,  psn);
+				}
+				//check if there is a character after keyword
+				if(psn+keyword.length() < searchString.length()){
+					after = searchString.substring(psn + keyword.length(),psn + keyword.length()+1);
+				}
+			}
+			return -1;
 	}
 
 	public static void createFields(){
 		
 		input = new Scanner(System.in);
 		user = "";
+		school = new KongSchool();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void demonstrateStringMethod(){
 		String text1 = new String("Hello world");
@@ -87,11 +133,10 @@ public class StringPractice {
 				nextWord = s.substring(0,endOfWord+1);
 			}
 			
-			printString +=cut+"\n";
+			printString += cut+"\n";
 		}
 		
-		System.out.println(printString);
+		System.out.print(printString);
 	}
-	
 	
 }

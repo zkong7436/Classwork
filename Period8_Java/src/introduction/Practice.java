@@ -2,7 +2,7 @@ package introduction;
 
 import java.util.Scanner;
 
-public class StringPractice {
+public class Practice {
 
 	static Scanner input;
 	static String user;
@@ -38,8 +38,15 @@ public class StringPractice {
 	public static void createFields(){
 		
 		input = new Scanner(System.in);
-		user = "";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static void demonstrateStringMethod(){
 		String text1 = new String("Hello world");
@@ -62,36 +69,32 @@ public class StringPractice {
 	}
 	
 	public static void print(String s){
-		String printString = "";
-		int cutoff = 35;
-		//check for words to add
-		//LOW s has a length > 0
-		while(s.length()>0){
-			String cut="";
-			String nextWord = "";
-			//check to see if the next word will fit on the line
-			//AND there must still be words to add
-			while(cut.length()+nextWord.length()<cutoff && s.length()>0){
-				//add the next word to the line
-				cut += nextWord;
-					
-				s=s.substring(nextWord.length());
-				
-				//identify the following word without space
-				int endOfWord=s.indexOf(" ");
-				//if there are no more spaces this is the last word, so add the whole thing
-				if(endOfWord == -1){
-					endOfWord = s.length()-1;//-1 for index
-				}
-				
-				nextWord = s.substring(0,endOfWord+1);
+		String printString = s;
+		int cutoff = 20;
+		if(printString.length() > cutoff){
+			for(int i=0; i*cutoff < s.length(); i++){
+				printString += getCut(s, cutoff, i+1)+"\n";
 			}
-			
-			printString +=cut+"\n";
 		}
-		
 		System.out.println(printString);
 	}
 	
+	private static String getCut(String s, int cutoff, int cut){
+		int cutIndex = cut * cutoff;
+		if(cutIndex > s.length())cutIndex = s.length();
+		String currentCut = s.substring(0, cutIndex);
+		int indexOfLastSpace = currentCut.length()-1;
+		for(int i = currentCut.length()-1 ; i>=0; i--){
+			String letter = currentCut.substring(i, i+1);
+			if(letter.equals(" ")){
+				indexOfLastSpace = i;
+				break;
+			}
+		}
+		 
+		currentCut = currentCut.substring(0, indexOfLastSpace);
+		return currentCut;
+		
+	}
 	
 }
