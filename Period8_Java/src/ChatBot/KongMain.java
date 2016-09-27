@@ -68,6 +68,11 @@ public class KongMain {
 				if(psn+keyword.length() < searchString.length()){
 					after = searchString.substring(psn + keyword.length(),psn + keyword.length()+1);
 				}
+				if(before.compareTo("a")<0 && after.compareTo("a")>0){
+					return psn;
+				}else{
+					psn = searchString.indexOf(keyword,psn+1);
+				}
 			}
 			return -1;
 	}
