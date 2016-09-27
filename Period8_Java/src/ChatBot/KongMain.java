@@ -55,7 +55,10 @@ public class KongMain {
 			searchString = searchString.trim();
 			searchString = searchString.toLowerCase();
 			keyword = keyword.toLowerCase();
-			int psn = searchString.indexOf(0);
+			System.out.println("The phrase is "+searchString);
+			System.out.println("The keyword is "+keyword);
+			int psn = searchString.indexOf(keyword);
+			System.out.println("The keyword was found at "+psn);
 			
 			while(psn>=0){
 				String before = " ";
@@ -63,18 +66,52 @@ public class KongMain {
 				//check if character in front exists
 				if(psn > 0){
 					before = searchString.substring(psn-1,  psn);
+					System.out.println("The character before is "+before);
 				}
 				//check if there is a character after keyword
 				if(psn+keyword.length() < searchString.length()){
-					after = searchString.substring(psn + keyword.length(),psn + keyword.length()+1);
+					after = searchString.substring(psn + keyword.length(), psn + keyword.length()+1);
+					System.out.println("The character after is "+after);
+				
 				}
-				if(before.compareTo("a")<0 && after.compareTo("a")>0){
+				if(before.compareTo("a")<0 && after.compareTo("a")<0 && noNegations(searchString, psn)){
+					System.out.println("Found "+keyword+", at "+psn);
 					return psn;
 				}else{
 					psn = searchString.indexOf(keyword,psn+1);
 				}
 			}
 			return -1;
+	}
+	/**
+	 *This is a HELPER method. A helper method is a method disguised for "helping" a larger method.
+	 *Because of this, helper methods are generally private because they are only used by the methods they are helping
+	 *ALSO, when you do your project, I expect to see helper methods because they also make code more READABLE
+	 * @param searchString (always lowercase)
+	 * @param psn
+	 * @return "true" if there is no negation word 
+	 * in front of psn
+	 */
+	private static boolean noNegations(String searchString, int psn) {
+		//check to see if the word "no" is in front of psn
+		//check to see if there are three spaces in front
+		//then check to see if "no" is there
+		if(psn-3>=0 && searchString.substring(psn-3, psn).equals("no ")){
+			return false;
+		}
+		//check for "not"
+		if(psn-4>=0 && searchString.substring(psn-4, psn).equals("not ")){
+			return false;
+		}
+		//check for "never"
+		if(psn-6>=0 && searchString.substring(psn-6, psn).equals("never ")){
+			return false;
+		}
+		//check for "n't "
+		if(psn-4>=0 && searchString.substring(psn-4, psn).equals("n't ")){
+			return false;
+		}
+		return true;
 	}
 
 	public static void createFields(){
