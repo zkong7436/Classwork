@@ -20,4 +20,16 @@ public class KongSchool implements ChatBots{
 		
 	}
 	
+	public boolean isTriggered(String userInput) {
+		String[] trigger = {"school","class","teacher"};
+		
+		for(int i=0; i<trigger.length;i++){
+		if(KongMain.findKeyword(userInput, trigger[i], 0) >= 0){
+			return true;
+		}
+		
+	}
+		return false;
+}
+	
 }
