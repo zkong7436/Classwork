@@ -15,8 +15,66 @@ public class ArraysPractice {
 	static boolean[] boos3;
 	
 	public static void main(String[] args) {
-		//how do you time a process
 		long currentTime = System.currentTimeMillis();
+		
+		int[] fiftyNumbers = new int[50];
+		populate(fiftyNumbers);
+		//printInt(fiftyNumbers);
+		//randomize(fiftyNumbers);
+		//printInt(fiftyNumbers);
+		rollDice(fiftyNumbers, 2);
+		printInt(fiftyNumbers);
+		//count each die roll and provide a percentage
+		countResult(fiftyNumbers, 2);
+		
+		long endTime = System.currentTimeMillis();
+		System.out.println("The process took "+(endTime - currentTime)+" ms.");
+	}
+
+	private static void countResult(int[] n, int nOfDice) {
+		int[] results = new int[nOfDice*6];
+		for(int s: n){
+			results[s-1]++;
+		}
+		for(int t=0; t<results.length; t++){
+			System.out.println("% for "+(t+1)+": "+results[t]/n.length);
+		}
+	}
+
+	private static void rollDice(int[] n, int nOfDice) {
+		for(int i=0; i<n.length; i++){
+			n[i] = 0;
+			int dice = nOfDice;
+			while (dice>0){
+				n[i]+=(1+(int)(6*Math.random()));
+				dice-=1;
+			}
+		}
+		
+	}
+
+	private static void randomize(int[] n) {
+		for(int i=0; i<n.length;i++){
+			n[i]=(int)(Math.random()*70);
+		}
+		
+	}
+
+	private static void printInt(int[] n) {
+		for(int i=0; i<n.length; i++){
+			System.out.println(n[i]);
+		}
+		
+	}
+
+	private static void populate(int[] n) {
+		for(int i=0; i<n.length; i++){
+			n[i]=i+1;
+		}
+	}
+
+	private void demonstratePassByValue(){
+		//how do you time a process
 		
 		int x = 10;
 		increase(x);
@@ -26,12 +84,15 @@ public class ArraysPractice {
 		standardPopulate(someStrings);
 		String s = someStrings[999];
 		makeSpecial(s);
+		someStrings[999] = getSpecialString();
 		print(someStrings);
 		
 		//initializeArray();
-		long endTime = System.currentTimeMillis();
-		System.out.println("The process took "+(endTime - currentTime)+" ms.");
-		
+	}
+	
+	private static String getSpecialString() {
+		String s = "THIS IS A SPECIAL STRING.";
+		return s;
 	}
 
 	private static void increase(int i) {
