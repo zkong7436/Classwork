@@ -37,7 +37,7 @@ public class ArraysPractice {
 			results[s-1]++;
 		}
 		for(int t=0; t<results.length; t++){
-			System.out.println("% for "+(t+1)+": "+results[t]);
+			System.out.println("% for "+(t+1)+": "+100*((double)(results[t])/n.length)+"%"));
 		}
 	}
 
