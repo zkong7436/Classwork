@@ -9,15 +9,45 @@ public class AdvancedArrayMethods {
 		shuffle(array);
 		//swap(array,0,array.length-1);
 		
-
+ 
 	}
-
-private static void shuffle(String[] a) {
-		for(int i=0; i<a.length;i++){
-			int random = (int)(Math.random()*6);
-			swap(a, i, random);
+	
+	public static int longestSharedSequences(int[] array1, int[] array2){
+		int max = 0;
+		int count = 0;
+		
+		for(int seqStart = 0; seqStart < array1.length; seqStart++){
+			int seqEnd = seqStart;
+			int[] seq = getSquence(seqStart, seqEnd, array1);
+			if(checkSequence(seq, array2)){
+				count++;
+				if(count>max){
+					max = count;
+				}
+			}
 		}
+		count = 0;
 	}
+	
+	
+	//returns true if sequence is found inside array2
+	private static boolean checkSequence(int[] seq, int[] array2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	//returns a sub-array containing the elements
+	//in array1 from seqStart to seqEnd
+	private static int[] getSquence(int seqStart, int seqEnd, int[] array1){
+		
+	}
+
+	private static void shuffle(String[] a) {
+			for(int i=0; i<a.length;i++){
+				int random = (int)(Math.random()*6);
+				swap(a, i, random);
+			}
+		}
 
 //	int[] array;
 //	array = new int[100];
