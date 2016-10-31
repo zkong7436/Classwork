@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class TwoDArraysIntro {
 
 	public static void main(String[] args) {
-		String[] xox = {"x","o","x","o","x"};
-		System.out.println(Arrays.toString(xox));
+//		String[] xox = {"x","o","x","o","x"};
+//		System.out.println(Arrays.toString(xox));
 		//a 10 array prints a horizontal string
 		
 		String[][] arr2D = new String[5][4];

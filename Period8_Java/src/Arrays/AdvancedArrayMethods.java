@@ -27,6 +27,7 @@ public class AdvancedArrayMethods {
 			}
 		}
 		count = 0;
+		return 0;
 	}
 	
 	

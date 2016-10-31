@@ -15,20 +15,48 @@ public class ArraysPractice {
 	static boolean[] boos3;
 	
 	public static void main(String[] args) {
+		
+		listPrimes(120);
+		
 		long currentTime = System.currentTimeMillis();
 		
-		int[] fiftyNumbers = new int[50];
-		populate(fiftyNumbers);
-		//printInt(fiftyNumbers);
-		//randomize(fiftyNumbers);
-		//printInt(fiftyNumbers);
-		rollDice(fiftyNumbers, 2);
-		printInt(fiftyNumbers);
-		//count each die roll and provide a percentage
-		countResult(fiftyNumbers, 2);
+//		int[] fiftyNumbers = new int[50];
+//		populate(fiftyNumbers);
+//		//printInt(fiftyNumbers);
+//		//randomize(fiftyNumbers);
+//		//printInt(fiftyNumbers);
+//		rollDice(fiftyNumbers, 2);
+//		printInt(fiftyNumbers);
+//		//count each die roll and provide a percentage
+//		countResult(fiftyNumbers, 2);
+//		
+//		long endTime = System.currentTimeMillis();
+//		System.out.println("The process took "+(endTime - currentTime)+" ms.");
+	}
+
+	private static void listPrimes(int limit) {
+		int lastToCheck = (int)(Math.sqrt(limit));
+		boolean[] numbers = new boolean[limit+1];
+		for(int i=0; i<limit+1; i++){
+			numbers[i] = true;
+		}
+		//0 and 1 are, by definition, not prime
+		numbers[0]=false;
+		numbers[1]=false;
+		//check all non "crossed of" numbers (start with 2)
+		for(int prime=2; prime<=lastToCheck; prime++){
+			if(numbers[prime]){
+				System.out.println("\n"+prime+" is prime. Crossing off:");
+				for(int i=(int)(Math.pow(prime, 2)); i<limit+1; i+=prime){
+					System.out.print(i+", ");
+					numbers[i]=false;
+				}
+			}
+		}
+		for(int index=0; index<numbers.length; index++){
+			if(numbers[index])System.out.print(index+", ");
+		}
 		
-		long endTime = System.currentTimeMillis();
-		System.out.println("The process took "+(endTime - currentTime)+" ms.");
 	}
 
 	private static void countResult(int[] n, int nOfDice) {
