@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class TwoDArraysIntro {
 	public static Scanner in = new Scanner(System.in);
-	static String[][] arr;
+	static boolean[][] arr;
 	static String[][] pic;
 	static int starti;
 	static int startj;
@@ -13,30 +13,59 @@ public class TwoDArraysIntro {
 	static int treasurej;
 	
 	public static void main(String[] args) {
-		arr = new String[5][5];
-		pic = new String[5][5];
-		for(int row = 0; row < arr.length; row++){
-			for(int col=0; col<arr[row].length; col++){
-				arr[row][col] = "("+row+","+col+")";
-			}
-		}
+		arr = new boolean [7][8];
+		pic = new String[16][11];
 		for(int row = 0; row < pic.length; row++){
 			for(int col=0; col<pic[row].length; col++){
-				pic[row][col] = "|__";
+				pic[row][col] = "   ";
 			}
 		}
-		for(int row = 0; row < pic.length; row++){
-			pic[row][pic[row].length-1] = "|__|";
+		
+		for(int row = 1; row < pic.length; row++){
+			for(int col=0; col<pic[row].length; col+=2){
+				pic[row][col] = "|";
+			}
 		}
 		
-		pic[2][2] = "|_x";
-		starti=2;
-		startj=2;
-		treasurei=4;
-		treasurej=3;
+		for(int col=0 ; col<pic[0].length-1; col++){
+			pic[0][col]="__";
+		}
+		
+		for(int row = 3; row < pic.length; row+=3){
+			for(int col=1; col<pic[row].length; col+=2){
+				pic[row][col] = "___";
+				
+			}
+		}
+		
+		pic[0][0]=" __";
+//		pic[0][pic[0].length-1]="  ";
+//		for(int row = 0; row < arr.length; row++){
+//			for(int col=0; col<arr[row].length; col++){
+//				arr[row][col] = "("+row+","+col+")";
+//			}
+//		}
+//		for(int row = 1; row < pic.length; row++){
+//			for(int col=0; col<pic[row].length; col++){
+//				pic[row][col] = "| ";
+//			}
+//		}
+//		for(int row = 0; row < pic.length; row++){
+//			pic[row][pic[row].length-1] = "| |";
+//		}
+//		for(int col=0; col<pic[0].length; col++){
+//			pic[0][col]=" "+col;
+//		}
 		
 		
-		startExploring();
+		//pic[8][7] = " x ";
+//		starti=2;
+//		startj=2;
+//		treasurei=4;
+//		treasurej=3;
+//		
+//		
+//		startExploring();
 		
 		
 //		String[] xox = {"x","o","x","o","x"};
@@ -51,82 +80,74 @@ public class TwoDArraysIntro {
 //		}
 		
 		
-//		String[][] map = new String[16][15];
-//		for(int row = 0; row < map.length; row++){
-//			for(int col=0; col<map[row].length; col++){
-//				map[row][col] = "   ";
-//			}
-//		}
-//		
-//		for(int row = 1; row < map.length; row++){
-//			for(int col=0; col<map[row].length; col+=2){
-//				map[row][col] = "|";
-//			}
-//		}
-//		
-//		for(int col=0 ; col<map[0].length; col++){
-//			map[0][col]="__";
-//		}
-//		
-//		for(int row = 3; row < map.length; row+=3){
-//			for(int col=1; col<map[row].length; col+=2){
-//				map[row][col] = "___";
-//				
-//			}
-//		}
 		
-//		
-//		for(String[] row : map){
-//			for(String col: row){
-//				System.out.print(col);
-//			}
-//			System.out.println();
-//		}
+		
+		
+		for(String[] row : pic){
+			for(String col: row){
+				System.out.print(col);
+			}
+			System.out.println();
+		}
 	}
 	
 	private static void startExploring() {
+//		while(true){
+//			printPic(pic);
+//			System.out.println("You are in room "+arr[starti][startj]+".");
+//			if(starti==treasurei && startj==treasurej)break;
+//			System.out.println("What do you want to do?");
+//			String input = in.nextLine(); 
+//			
+//			int[] newCoordinates = interpretInput(input);
+//			starti = newCoordinates[0];
+//			startj = newCoordinates[1];
+//			pic[starti][startj] = "|_x";
+//		}
+//		System.out.println("Congratulations! You've found the treasure.");
+		
 		while(true){
 			printPic(pic);
-			System.out.println("You are in room "+arr[starti][startj]+".");
-			if(starti==treasurei && startj==treasurej)break;
-			System.out.println("What do you want to do?");
+			System.out.println("Which column do you want to drop your piece?");
 			String input = in.nextLine(); 
 			
-			int[] newCoordinates = interpretInput(input);
-			starti = newCoordinates[0];
-			startj = newCoordinates[1];
-			pic[starti][startj] = "|_x";
+			interpretInput(input);
 		}
-		System.out.println("Congratulations! You've found the treasure.");
+		//System.out.println("Congratulations! You've found the treasure.");
 		
 	}
 
-	private static int[] interpretInput(String input) {
+	private static void interpretInput(String input) {
 		//verify input is valid
 		while(!isValid(input)){
-			System.out.println("Sorry, this game, you can only use the w, a, s, d controls.");
 			System.out.println("Tell me again what you would like to do.");
 			input = in.nextLine();
 		}
-		int currenti = starti;
-		int currentj = startj;
-		input = input.toLowerCase();
-		if(input.equals("w"))currenti--;
-		if(input.equals("a"))currentj--;
-		if(input.equals("s"))currenti++;
-		if(input.equals("d"))currentj++;
-		int[] newCoordinates = {starti,startj};
-		if(currenti >= 0 && currenti<arr.length && currentj>=0 && currentj<arr[0].length){
-			newCoordinates[0] = currenti;
-			newCoordinates[1] = currentj;
-		}else{
-			System.out.println("Sorry, you've reached the edge of the known universe. You may go no father in that direction.");
+		int num = Integer.parseInt(input.toLowerCase());
+		if(arr[1][num])System.out.println("Sorry, it's filled up. Pick another column.");
+		else{
+			for(int r=arr.length-1; r>0; r--){
+				if(!arr[r][num]){
+					arr[r][num] = true;
+					pic[r][num] = "|O";
+					break;
+				}
+			}
 		}
-		return newCoordinates;
+//		if(){
+//			newCoordinates[0] = currenti;
+//			newCoordinates[1] = currentj;
+//		}else{
+//			System.out.println("Sorry, you've reached the edge of the known universe. You may go no father in that direction.");
+//		}
 	}
 
 	private static boolean isValid(String input) {
-		String[] validKeys = {"w","a","s","d"};
+		String[] validKeys = new String[8];
+		for(int i=0; i<pic[0].length;i++){
+			validKeys[i]=""+i;
+		}
+		
 		for (String key: validKeys){
 			if(input.equals(key)) return true;
 		}
