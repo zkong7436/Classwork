@@ -6,13 +6,49 @@ public class InventoryNockles {
 	private String map;
 
 	public InventoryNockles() {
-		hasMap = true;
+		hasMap = false;
 		updateMap();
 	}
+	
+	public void setHasMap(boolean hasMap) {
+		this.hasMap = hasMap;
+	}
 
-	private void updateMap() {
+
+
+	public void updateMap() {
 		CaveRoomPd8[][] caves = CaveExplorer.caves;
 		//convert these caves to a string representation
+		map = " ";
+		//horizontal line across top row with 4
+		//except for last column
+		for(int i=0; i<caves[i].length-1; i++){
+			map+="____";
+		}
+		map+="___\n";
+		//each room
+		for(CaveRoomPd8[] row: caves){
+			//there are three rows of text
+			for(int textRow=0; textRow<3; textRow++){
+				//the text is for each room
+				for(CaveRoomPd8 cr: row){
+					String str= "|   ";
+					String contents = cr.getContents();
+					if(textRow==1 && cr.getDoor(CaveRoomPd8.WEST)!=null){
+						str = "  "+contents+" ";
+					}
+					else if(textRow==2){
+						if(cr.getDoor(CaveRoomPd8.SOUTH)!=null){
+							str="|_ _";
+						}else{
+							str="|___";
+						}
+					}
+					map+=str;			
+				}
+				map+="|\n";
+			}
+		}
 		
 	}
 
