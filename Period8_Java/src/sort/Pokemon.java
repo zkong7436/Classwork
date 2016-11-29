@@ -9,8 +9,8 @@ public class Pokemon {
 	
 	public Pokemon(String name, int level){
 		hp = 100;
-		this.name = "Pikachu";
-		this.level = 80;
+		this.name = name;
+		this.level = level;
 		this.poisoned = false;
 	}
 	
