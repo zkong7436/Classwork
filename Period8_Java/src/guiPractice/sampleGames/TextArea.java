@@ -1,18 +1,20 @@
-package guiPractice.components;
+package guiPractice.sampleGames;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 
-public class TextLabel extends Component {
+import guiPractice.components.Component;
+
+public class TextArea extends Component{
 	
-	//FIELDS
 	private String text;
 	private String font;
 	private int size;
 
-	public TextLabel(int x, int y, int w, int h, String text) {
+	public TextArea(int x, int y, int w, int h, String text) {
 		super(x, y, w, h);
 		this.text = text;
 		font = "Helvetica";
@@ -36,9 +38,13 @@ public class TextLabel extends Component {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(Color.black);
 		if(text != null){
-			g.setFont(new Font(font,Font.PLAIN, size));
-			g.drawString(text, 4, getHeight()-5);
+			String[] words = text.split(" ");
+			int placeholder = 0;
+			int limit = 70;
+			ArrayList<String> newln = new ArrayList<String>();
+			while(){
+				
+			}
 		}
 	}
-
 }
