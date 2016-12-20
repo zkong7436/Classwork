@@ -4,7 +4,7 @@ import guiPractice.GUIApplication;
 
 public class MouseFollower extends GUIApplication {
 
-	private CoordinateScreen coordScreen;
+	public static CoordinateScreen coordScreen;
 	public static MyScreen myScreen;
 	public static MouseFollower game;
 	
