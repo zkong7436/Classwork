@@ -30,7 +30,7 @@ public class MyScreen extends Screen implements MouseMotionListener, MouseListen
 		picture = new Graphic(75,75,.75,"resources/sampleImages/0e9.jpg");
 		pepe = new Button(50,50,100,60,"Pepe",Color.GRAY, new Action(){
 			public void act(){
-				MouseFollower.game.setScreen(MouseFollower.coordScreen);;
+				MouseFollower.game.setScreen(MouseFollower.coordScreen);
 			}
 		});
 		viewObjects.add(label);

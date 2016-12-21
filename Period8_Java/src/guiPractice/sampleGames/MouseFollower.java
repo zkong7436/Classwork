@@ -7,6 +7,7 @@ public class MouseFollower extends GUIApplication {
 	public static CoordinateScreen coordScreen;
 	public static MyScreen myScreen;
 	public static MouseFollower game;
+	public static ClickScreen click;
 	
 	public static void main(String[] args){
 		game = new MouseFollower();
@@ -17,7 +18,8 @@ public class MouseFollower extends GUIApplication {
 	protected void initScreen() {
 		coordScreen = new CoordinateScreen(getWidth(),getHeight());
 		myScreen = new MyScreen(getWidth(),getHeight());
-		setScreen(coordScreen);
+		click = new ClickScreen(getWidth(),getHeight());
+		setScreen(click);
 	}
 
 }

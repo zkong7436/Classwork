@@ -26,6 +26,12 @@ public class Graphic implements Visible {
 		loadImages(imageLocation,w,h);
 	}
 
+	public Graphic(int x, int y, String imageLocation){
+		this.x = x;
+		this.y = y;
+		loadedImages = false;
+		loadImages(imageLocation, 0, 0);
+	}
 	private void loadImages(String imageLocation, int w, int h) {
 		try{
 			//get the image from file
@@ -78,6 +84,26 @@ public class Graphic implements Visible {
 	private void loadImages(String imageLocation, double scale) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean isLoadedImages() {
+		return loadedImages;
+	}
+
+	public void setLoadedImages(boolean loadedImages) {
+		this.loadedImages = loadedImages;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
 	}
 
 	@Override

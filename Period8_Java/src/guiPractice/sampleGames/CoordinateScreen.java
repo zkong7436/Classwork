@@ -37,6 +37,7 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 				MouseFollower.game.setScreen(MouseFollower.myScreen);
 			}
 		});
+		
 		picture = new Graphic(50,50,.5,"resources/sampleImages/0e9.jpg");
 		viewObjects.add(picture);
 		viewObjects.add(label);
