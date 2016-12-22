@@ -36,4 +36,8 @@ public class MyPracticeClickableScreen extends ClickableScreen implements MouseM
 	public MouseListener getMouseListener(){
 		return this;
 	}
+	
+	public MouseMotionListener getMouseMotionListener(){
+		return this;
+	}
 }
