@@ -32,6 +32,7 @@ public class Graphic implements Visible {
 		loadedImages = false;
 		loadImages(imageLocation, 0, 0);
 	}
+	
 	private void loadImages(String imageLocation, int w, int h) {
 		try{
 			//get the image from file

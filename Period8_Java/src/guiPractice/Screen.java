@@ -135,4 +135,11 @@ public abstract class Screen {
 		
 	}
 
+	public int getWidth(){
+		return width;
+	}
+	
+	public int getHeight(){
+		return height;
+	}
 }
