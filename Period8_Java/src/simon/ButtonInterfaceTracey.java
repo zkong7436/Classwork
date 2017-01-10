@@ -9,6 +9,9 @@ public interface ButtonInterfaceTracey extends Clickable{
 	
 	void setColor(Color color);
 	void setAction(Action a);
+	void setX(int x);
+	void setY(int y);
+	void highlight();
 	
 		
 }

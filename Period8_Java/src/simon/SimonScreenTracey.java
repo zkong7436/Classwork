@@ -29,7 +29,8 @@ public class SimonScreenTracey extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		final ButtonInterfaceTracey b = getAButton();
+		b.highlight();
 
 	}
 
@@ -68,16 +69,22 @@ public class SimonScreenTracey extends ClickableScreen implements Runnable {
 		int numberOfButtons = 3;
 		Color[] colors = {Color.blue, Color.red, Color.black};
 		for(int i=0; i<=numberOfButtons; i++){
-			button[i] = getAButton();
-			button[i].setColor(colors[i]);
-			button[i].setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
-			button[i].setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
-			button[i].setAction(new Action(){
+			ButtonInterfaceTracey b = getAButton();
+			b.setColor(colors[i]);
+			b.setX(160 + (int)(100*Math.cos(i*2*Math.PI/(numberOfButtons))));
+			b.setY(200 - (int)(100*Math.sin(i*2*Math.PI/(numberOfButtons))));
+			b.setAction(new Action(){
 				public void act(){
 					if(acceptingInput){
 						
 					}
 				}
+			});
+			Thread blink = new Thread(new Runnable(){
+
+				public void run(){
+				}
+
 			});
 		}
 	}
