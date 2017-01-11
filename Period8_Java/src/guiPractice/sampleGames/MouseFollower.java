@@ -19,7 +19,7 @@ public class MouseFollower extends GUIApplication {
 		coordScreen = new CoordinateScreen(getWidth(),getHeight());
 		myScreen = new MyScreen(getWidth(),getHeight());
 		click = new ClickScreen(getWidth(),getHeight());
-		setScreen(click);
+		setScreen(myScreen);
 	}
 
 }
